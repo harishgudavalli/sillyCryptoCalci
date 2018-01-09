@@ -1,0 +1,83 @@
+
+<html>
+
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">    
+</head>
+<body>
+
+<script>
+function myFunction() {
+    document.getElementById("result").innerHTML = null;
+    var text;
+    var sellingRate = Number(document.getElementById("sellingRate").value);
+    var buyingRate = Number(document.getElementById("buyingRate").value);
+    var numberOfCoins = Number(document.getElementById("numberOfCoins").value);
+    if(numberOfCoins  == 0)//if the number of coins field is left as null 
+    {
+        numberOfCoins = 1;
+    }
+    var percentage = Number(document.getElementById("percentage").value);
+    
+    for(var i=1;i<=10;i++)
+    {
+    var d = (sellingRate)*(i/10);
+    var singleCoin = d + sellingRate;
+    var initialTotal =  singleCoin * numberOfCoins;
+    if(percentage > 0){ 
+        var finalTotal = initialTotal - (initialTotal * (percentage/100));
+    }
+    else{ 
+        var finalTotal = initialTotal;
+    }
+    var c = (10*i);
+    var text = c+"% increase in the value of "+numberOfCoins+" coin - tax("+percentage+"%): "+finalTotal+"<br>";//+"Profit/Loss ="+(finalTotal);
+    document.getElementById("result").innerHTML += text;
+    } 
+
+}
+</script>
+<br>
+    <div style="
+    margin-right: 2%;
+    margin-left: 2%;
+    border-left: 10%;">
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Selling Rate</label>
+    <div class="col-sm-10">
+      <input class="form-control" id="sellingRate" placeholder="Current Rate">
+    </div>
+     </div>
+
+     <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Buying Rate</label>
+    <div class="col-sm-10">
+      <input class="form-control" id="buyingRate" placeholder="Old Rate">
+    </div>
+     </div>
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Number of Coins</label>
+    <div class="col-sm-10">
+      <input class="form-control" id="numberOfCoins" placeholder="Coins">
+    </div>
+     </div>
+
+     <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Gov Tax</label>
+    <div class="col-sm-10">
+      <input class="form-control" id="percentage" placeholder="Add Tax +">
+    </div>
+    </div>
+
+    <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-outline-primary" onclick="myFunction()">Submit</button>
+    </div>
+  </div>
+
+<p id="result" class="text-left"></p>
+</div>
+</body>
+</html> 
